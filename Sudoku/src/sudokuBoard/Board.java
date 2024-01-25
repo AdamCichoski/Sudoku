@@ -4,15 +4,15 @@ public class Board {
     public final float SCREEN_WIDTH = 1200, SCREEN_HEIGHT = 800;
     private final float shorterDimension = Math.min(SCREEN_WIDTH, SCREEN_HEIGHT);
     private final float longerDimension = Math.max(SCREEN_WIDTH, SCREEN_HEIGHT);
-    private final float boxDimension = shorterDimension *(float)(0.8);
+    private final float boxDimension = shorterDimension *(float)(0.85);
     private final float individualBoxSize = boxDimension/3;
     private final float boxDisplacement = (shorterDimension - boxDimension)/(float)2.0;
     /**
      * The starting value for the starting x position for the layout of the actual sudoku box came from
-     * trial and error. The 1.25 coefficient was just to push the box more over to the right, and was a number
+     * trial and error. The coefficient was just to push the box more over to the right, and was a number
      * that took testing.
      */
-    private final float startingX = (float)(1.25)*(SCREEN_WIDTH/3),   startingY = (SCREEN_HEIGHT - boxDimension)/2;
+    private final float startingX = (float)(1.2)*(SCREEN_WIDTH/3),   startingY = (SCREEN_HEIGHT - boxDimension)/2;
 
     private PApplet screen;
 
