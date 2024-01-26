@@ -1,5 +1,6 @@
 package src;
 import processing.core.PApplet;
+import processing.core.PFont;
 import src.sudokuBoard.*;
 
 /**
@@ -23,10 +24,20 @@ public class Main extends PApplet {
         background(228466);
 
         board.render();
+        //        testing();
     }
 
     public static void main(String[] args) {
         String[] input = {"src.Main"};
         PApplet.main(input);
     }
+
+    public void testing(){
+        PFont font = createFont("Times New Roman", 31);
+        textFont(font);
+        text("Word", 200, 200);
+
+    }
+
+
 }

@@ -45,6 +45,10 @@ public class Board {
             addy+=individualBoxSize;
         }
     }
+
+    /**
+     * Creates the 3x3 boxes inside of the board to store each individual number
+     */
     public void numberCubeLayout(){
         checkScreenValid();
         short addy=0, addx=0;
