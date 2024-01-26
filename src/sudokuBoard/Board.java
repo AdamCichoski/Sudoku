@@ -6,6 +6,7 @@ public class Board {
     private final float longerDimension = Math.max(SCREEN_WIDTH, SCREEN_HEIGHT);
     private final float boxDimension = shorterDimension *(float)(0.85);
     private final float individualBoxSize = boxDimension/3;
+    private final float individualNumberBoxSize = individualBoxSize/3;
     private final float boxDisplacement = (shorterDimension - boxDimension)/(float)2.0;
     /**
      * The starting value for the starting x position for the layout of the actual sudoku box came from
@@ -26,11 +27,13 @@ public class Board {
         this.screen = screen;
     }
 
+
+    public void render(){
+        boardLayout();
+        screen.rect(startingX, startingY, individualBoxSize/3, individualBoxSize/3);
+    }
     public void boardLayout(){
-        if(screen == null){
-            System.out.println("Screen variable is null. Input a screen to display using setScreen(PApplet screen) method.");
-            return;
-        }
+        checkScreenValid();
         short addy =0, addx =0;
         for(short i=0;i<3;i++){
             float y = startingY + addy;
@@ -40,6 +43,20 @@ public class Board {
             }
             addx=0;
             addy+=individualBoxSize;
+        }
+    }
+    public void numberCubeLayout(){
+        checkScreenValid();
+        short addy=0, addx=0;
+        byte count =0;
+        short x = (short) startingX;
+        short y = (short) startingY;
+        for (short i=0; i<9;i++){
+            y += addy;
+            for (short j=0;j<27;j++){
+
+            }
+
         }
     }
 
@@ -63,6 +80,13 @@ public class Board {
                 System.out.print(currentState[i][j]+ "  ");
             }
             System.out.println();
+        }
+    }
+
+    public void checkScreenValid(){
+        if(screen == null){
+            System.out.println("Screen variable is null. Input a screen to display using setScreen(PApplet screen) method.");
+            return;
         }
     }
 }
