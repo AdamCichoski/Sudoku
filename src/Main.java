@@ -22,7 +22,7 @@ public class Main extends PApplet {
     public void draw(){
         background(228466);
 
-        board.boardLayout();
+        board.render();
     }
 
     public static void main(String[] args) {
