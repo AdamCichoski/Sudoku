@@ -30,10 +30,12 @@ public class Board {
 
     public void render(){
         boardLayout();
-        screen.rect(startingX, startingY, individualBoxSize/3, individualBoxSize/3);
+
     }
     public void boardLayout(){
         checkScreenValid();
+        numberCubeLayout();
+        screen.strokeWeight(5);
         short addy =0, addx =0;
         for(short i=0;i<3;i++){
             float y = startingY + addy;
@@ -49,19 +51,24 @@ public class Board {
     /**
      * Creates the 3x3 boxes inside of the board to store each individual number
      */
-    public void numberCubeLayout(){
+    private void numberCubeLayout(){
+        screen.strokeWeight(1);
         checkScreenValid();
         short addy=0, addx=0;
         byte count =0;
         short x = (short) startingX;
         short y = (short) startingY;
-        for (short i=0; i<9;i++){
+        for (short i=0; i<9 ;i++){
             y += addy;
-            for (short j=0;j<27;j++){
-
+            for (short j=0;j<9;j++){
+                screen.rect(startingX + addx, startingY + addy, individualBoxSize/3, individualBoxSize/3);
+                addx+= individualBoxSize/3;
             }
+            addy+= individualBoxSize/3;
+            addx =0;
 
         }
+
     }
 
     /**
