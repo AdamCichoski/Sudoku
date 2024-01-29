@@ -43,4 +43,9 @@ public class Rectangle {
     public void setCubeValue(byte number){
         this.cubeValue = number;
     }
+
+
+    public void example(){
+
+    }
 }
