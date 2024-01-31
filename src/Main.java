@@ -34,7 +34,7 @@ public class Main extends PApplet {
         board = new Board(this);
         size((short)board.SCREEN_WIDTH,(short)board.SCREEN_HEIGHT);
         r = new Rectangle(50,50, 50,this);
-        r.setMatrixCoordinates((short) 1,(short)1,(byte)1);
+        r.setMatrixCoordinates((short) 1,(short)1,null);
 
 //        if(x == 0){
 //            board.printCurrent();
