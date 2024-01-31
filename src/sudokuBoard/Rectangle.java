@@ -33,7 +33,7 @@ public class Rectangle {
      * @param boardX The x position inside the matrix for the Sudoku state
      * @param boardY The y position inside the matrix for the Sudoku state
      */
-    public void setMatrixCoordinates(short boardX, short boardY, byte cubeValue){
+    public void setMatrixCoordinates(short boardX, short boardY, Byte cubeValue){
         this.boardX = boardX;
         this.boardY = boardY;
         this.cubeValue = cubeValue;
@@ -50,9 +50,10 @@ public class Rectangle {
         screen.strokeWeight(1);
         screen.rect(x,y,dimension,dimension);
         screen.fill(0);
-        screen.text(cubeValue, x+((dimension/4)),y+(3*(dimension/4)));
+        String textValue = (cubeValue == null)? " ": cubeValue+ "";
+        screen.text(textValue, x+((dimension/4)),y+(3*(dimension/4)));
         float textWidth = screen.textWidth(""+cubeValue);
-        screen.line(x+(dimension/4), y+(3*dimension/4), (x+(dimension/4)+textWidth), y+(3*dimension/4));
+//        screen.line(x+(dimension/4), y+(3*dimension/4), (x+(dimension/4)+textWidth), y+(3*dimension/4));
 //        screen.text(cubeValue, x+(textWidth/2),y+(3*dimension/4));
     }
     public void example(){

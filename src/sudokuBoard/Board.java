@@ -1,5 +1,7 @@
 package src.sudokuBoard;
 import processing.core.PApplet;
+import java.util.Set;
+import java.util.HashSet;
 public class Board {
     public final float SCREEN_WIDTH = 1200, SCREEN_HEIGHT = 800;
     private final float shorterDimension = Math.min(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -15,7 +17,7 @@ public class Board {
      */
     private final float startingX = (float)(1.2)*(SCREEN_WIDTH/3),   startingY = (SCREEN_HEIGHT - boxDimension)/2;
     private PApplet screen;
-    private byte[][] currentState = new byte[9][9];
+    private Byte[][] currentState = new Byte[9][9];
 
     /**
      * Constructor
@@ -73,7 +75,6 @@ public class Board {
             addx =0;
 
         }
-
     }
 
     /**
@@ -82,7 +83,66 @@ public class Board {
      * @return game is valid or not
      */
     private boolean checkMatrix(){
-        return false;
+        return verticalCheck() && horizontalCheck() && inBoxCheck();
+    }
+
+    /**
+     * Performs a vertical check on the board to ensure that there are no repeated values
+     * @return false if a duplicate has been found
+     */
+    private boolean verticalCheck(){
+        Set<Byte> set = new HashSet<>();
+        for(short i=0; i<currentState.length;i++){
+            for(short j=0;j<currentState[i].length;i++){
+                if(currentState[j][i]!=null){
+                    if(!set.add(currentState[i][j])){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Performs a horizontal check on the board to ensure that there are no repeated values
+     * @return false if a duplicate has been found
+     */
+    private boolean horizontalCheck(){
+        Set<Byte> set = new HashSet<>();
+        for(byte i=0; i<currentState.length;i++){
+            for(byte j=0;j<currentState[i].length;i++){
+                if(currentState[i][j]!=null){
+                    if(!set.add(currentState[i][j])){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    /**
+     * Performs a search for duplicates in the 3x3 squares
+     * @return false if a duplicate has been found
+     */
+    /**************************************--Work needs to be done here--*****************************************/
+    private boolean inBoxCheck(){
+        byte squareLength = 3; //This is used in the modulus operation
+        Set<Byte> set = new HashSet<>();
+        for (byte i=0, count=0;count<81;i++, count++){
+            if(i%squareLength ==0){
+                set.clear();
+
+            }
+            for(byte j=0;j<3;j++){
+                if(currentState[i][j] != null){
+                    if(!set.add(currentState[i][j])){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
     /**
      * Generates a random starting layout for the board in terms of the placement of the numbers
