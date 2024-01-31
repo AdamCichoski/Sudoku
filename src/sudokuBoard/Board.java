@@ -14,9 +14,7 @@ public class Board {
      * that took testing.
      */
     private final float startingX = (float)(1.2)*(SCREEN_WIDTH/3),   startingY = (SCREEN_HEIGHT - boxDimension)/2;
-
     private PApplet screen;
-
     private byte[][] currentState = new byte[9][9];
 
     /**
@@ -27,24 +25,31 @@ public class Board {
         this.screen = screen;
     }
 
-
+    /**
+     * Method to output the board onto the screen
+     */
     public void render(){
         boardLayout();
-
     }
+
+    /**
+     * Draws the matrix layout of the sudoku board (9x9).
+     * In this method, the editable and non-editable squares that display the values of the matrix are
+     * rendered before adding the separators between each 3x3 square.
+     */
     public void boardLayout(){
+        screen.fill(255);
         checkScreenValid();
         numberCubeLayout();
         screen.strokeWeight(5);
-        short addy =0, addx =0;
-        for(short i=0;i<3;i++){
-            float y = startingY + addy;
-            for(short j =0; j<3;j++){
-                screen.rect(startingX +addx, startingY +addy, individualBoxSize, individualBoxSize);
-                addx+=individualBoxSize;
-            }
-            addx=0;
-            addy+=individualBoxSize;
+        //These variables are built to alter the positions that the lines will be drawn onto the board
+        short addy =(short)individualBoxSize, addx =(short)individualBoxSize;
+        //Drawing the separators between the 3x3 squares
+        for (short i=0;i<2;i++){
+            screen.line((startingX+addx), startingY, (startingX+addx), (startingY+boxDimension));
+            screen.line(startingX, (startingY +addy), (startingX+boxDimension), (startingY+addy));
+            addx+= (short)individualBoxSize;
+            addy+=(short)individualBoxSize;
         }
     }
 
@@ -72,6 +77,14 @@ public class Board {
     }
 
     /**
+     * This method is used to ensure that the board is currently valid in terms of the rules of Sudoku.
+     * This game only checks in the 3x3 square, horizontally, and vertically. Diagonally is not considered.
+     * @return game is valid or not
+     */
+    private boolean checkMatrix(){
+        return false;
+    }
+    /**
      * Generates a random starting layout for the board in terms of the placement of the numbers
      */
     public void generateBoard(){
@@ -85,6 +98,9 @@ public class Board {
         }
     }
 
+    /**
+     * This method is used for testing. It prints the current state of the matrix of Sudoku into the termnial
+     */
     public void printCurrent(){
         for(int i=0;i<currentState.length;i++){
             for (int j=0;j<currentState[i].length;j++){
@@ -94,6 +110,9 @@ public class Board {
         }
     }
 
+    /**
+     * Checks to make sure that there is a valid screen
+     */
     public void checkScreenValid(){
         if(screen == null){
             System.out.println("Screen variable is null. Input a screen to display using setScreen(PApplet screen) method.");
